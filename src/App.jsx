@@ -5,11 +5,12 @@ import PeopleList from './PeopleList';
 
 function App() {
   const[people, setPeople] = useState([]);
+
   return (
-    <div>
+    <>
       <PeopleForm people={people} setPeople={setPeople}/>
       <PeopleList people={people} setPeople={setPeople}/>
-    </div>
+    </>
   )
 }
 

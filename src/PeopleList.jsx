@@ -1,33 +1,26 @@
-function PeopleList({people}){
+function PeopleList({ people }) {
     return (
-        <table>
-                    <thead>
-                        <tr>
-
-                        <th>Id</th>
-                        <th>First</th>
-                        <th>Last</th>
-                        <th>Phone</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+        <div className="list">
+            <div className="listTitle">
+                <div>Id</div>
+                <div>First</div>
+                <div>Last</div>
+                <div>Phone</div>
+            </div>
             {
-                people.map(function (person){
+                people.map((person) => {
                     return (
-
-                        <tr key={person.id}>
-                            <td>{person.id}</td>
-                            <td>{person.firstName}</td>
-                            <td>{person.lastName}</td>
-                            <td>{person.phone}</td>
-
-                        </tr>
-                        // <li key={person.userId}>{person.firstName} {person.lastName}: {person.phone}</li>
+                        <div className="listItem" key={person.id} onClick={()=>{console.log({person});
+                        }}>
+                            <div>{person.id}</div>
+                            <div>{person.firstName}</div>
+                            <div>{person.lastName}</div>
+                            <div>{person.phone}</div>
+                        </div>
                     )
                 })
             }
-            </tbody>
-        </table>
+        </div>
     )
 }
 
