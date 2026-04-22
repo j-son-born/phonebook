@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <link rel="stylesheet" href="/src/index.css" />
+  <link rel="stylesheet" href="/src/App.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>phonebook</title>
+  <style>
+    #loginPage {
+      #mainForm {
+        width: 0 auto;
+        display: flex;
+        flex-wrap: wrap;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="root">
+    <div id="loginPage">
+      <form id="loginForm">
+        <label for="username">Username
+          <input type="text" name="username" id="username" />
+        </label>
+        <label for="password">Password
+          <input type="text" name="password" id="password" />
+        </label>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+    <div id="mainPage">
+      <form id="mainForm">
+        <div>
+          <label>First Name:
+            <input type="text" name="firstName" id="firstName" required />
+          </label>
+        </div>
+        <div>
+          <label>Last Name:
+            <input type="text" name="lastName" id="lastName" required />
+          </label>
+        </div>
+        <div>
+          <label>Phone:
+            <input type="text" name="phone" id="phone" required />
+          </label>
+        </div>
+        <div>
+          <button type="submit">Submit</button>
+        </div>
+      </form>
+      <div class="peopleList">
+        <div class="listItem">
+          <div class="field">1</div>
+          <div class="field">Jason</div>
+          <div class="field">Kaufmann</div>
+          <div class="field">1234567890</div>
+        </div>
+        <div class="listItem">
+          <div class="field">2</div>
+          <div class="field">Jason</div>
+          <div class="field">Kaufmann</div>
+          <div class="field">1234567890</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
