@@ -44,39 +44,15 @@
   color: #888;
 }
 
-form {
-  min-width: 100%;
+.peopleList {
   display: flex;
   flex-wrap: wrap;
-}
 
-.formRow {
-  display: flex;
-  min-width: 100%;
-  justify-content: right;
-}
-
-.list {
-  display: flex;
-  flex-wrap: wrap;
-  min-width: 100%;
-}
-
-.listTitle {
-  display: flex;
-  min-width: 100%;
-  div {
-    justify-content: flex-end;
-    min-width: 25%;
-  }
-}
-
-.listItem {
-  display: flex;
-  flex-wrap: wrap;
-  min-width: 100%;
-  div {
-    justify-content: flex-end;
-    min-width: 25%;
+  .listItem {
+    display:flex;
+    min-width: 100%;
+    div {
+      min-width: 25%;
+    }
   }
 }

@@ -1,16 +1,9 @@
-import { useState } from 'react'
 import './App.css'
-import PeopleForm from './PeopleForm';
-import PeopleList from './PeopleList';
+import PeoplePage from './PeoplePage';
 
-function App() {
-  const[people, setPeople] = useState([]);
-
+function App({idGenerator}) {
   return (
-    <>
-      <PeopleForm people={people} setPeople={setPeople}/>
-      <PeopleList people={people} setPeople={setPeople}/>
-    </>
+    <PeoplePage idGenerator={idGenerator}/>
   )
 }
 
