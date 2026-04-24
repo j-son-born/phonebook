@@ -11,8 +11,7 @@ function PeoplePage({idGenerator}) {
         console.log('currentId', currentId);
     }, [currentId]);
 
-    function handleSubmit(e) {
-        e.preventDefault();
+    function handleSubmit() {
         if (currentId) {
             let oldPerson = people.find(p => p.id == currentId);
             Object.assign(oldPerson, { firstName, lastName, phone });
@@ -63,7 +62,7 @@ function PeoplePage({idGenerator}) {
     return (
         <>
             <div>
-                <form>
+                <form action={handleSubmit}>
                     <label htmlFor="firstName">First Name:
                         <input type="text" id="firstName" value={firstName} onChange={e => setFirstName(e.target.value)} />
                     </label>
@@ -73,7 +72,7 @@ function PeoplePage({idGenerator}) {
                     <label htmlFor="phone">Phone:
                         <input type="text" id="phone" value={phone} onChange={e => setPhone(e.target.value)} />
                     </label>
-                    <button type="submit" onClick={handleSubmit}>Submit</button>
+                    <button type="submit">Submit</button>
                     <button type="reset" onClick={clearForm}>Clear</button>
                 </form>
             </div>
