@@ -1,53 +1,77 @@
-import { useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 
-function PeopleForm({ people, setPeople}) {
-    const [formData, setFormData] = useState({});
-    
-    // const idGenerator = (function* () {
-    //     let i = 1;
-    //     while (true) {
-    //         yield i;
-    //         i += 1;
-    //     }
-    // })();
+function PeopleForm({ people, setPeople, currentId, setCurrentId, idGenerator }) {
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [phone, setPhone] = useState('');
 
-    function handleChange(e) {
-        const { name, value } = e.target;
-        setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
+    const editPerson = useCallback((id) => {
+        if (!id) return;
+        console.group('selectPerson');
+
+        (async (id) => {
+            return people.find(p => p.id == id);
+        })(id).then(currentPerson => {
+            setCurrentId(currentPerson?.id);
+            if (currentId) {
+                console.table(currentPerson);
+                setFirstName(currentPerson.firstName)
+                setLastName(currentPerson.lastName)
+                setPhone(currentPerson.phone)
+            }
+        });
+
+        console.groupEnd();
+    }, [people, currentId, setCurrentId, setFirstName, setLastName, setPhone])
+
+    useEffect(() => {
+        if (currentId) {
+            editPerson(currentId);
+        }
+    }, [currentId, editPerson]);
+
+    function handleSubmit() {
+        if (currentId) {
+            let oldPerson = people.find(p => p.id == currentId);
+            if(oldPerson){
+                console.log('Edited:', currentId);
+                console.table([oldPerson,{firstName, lastName, phone}], ['firstName', 'lastName', 'phone']);
+                Object.assign(oldPerson, { firstName, lastName, phone });
+            }
+        } else {
+            const id = idGenerator.next().value,
+            newPerson = {id, firstName, lastName, phone};
+
+            setPeople([...people, { id, firstName, lastName, phone }]);
+            console.table(newPerson);
+        }
+
+        setCurrentId(null);
+        [setFirstName, setLastName, setPhone].forEach(fn => fn(''));
+        document.getElementById('firstName').focus();
     }
 
-    function handleSubmit(e) {
-        e.preventDefault();
-        const id = people.length ? people.length + 1 : 1,
-        person = {id, ...formData};
-        console.table('handleSubmit', person);
-
-        
-        setPeople([...people, person]);
-        setFormData({ firstName: "", lastName: "", phone: "" });
+    function clearForm() {
+        setCurrentId(null);
+        [setFirstName, setLastName, setPhone].forEach(fn => fn(''));
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <div className="formRow">
-                <label>First Name:
-                    <input type="text" name="firstName" id="firstName" onChange={handleChange} />
+        <div>
+            <form action={handleSubmit}>
+                <label htmlFor="firstName">First Name:
+                    <input type="text" id="firstName" value={firstName} onChange={e => setFirstName(e.target.value)} />
                 </label>
-            </div>
-            <div className="formRow">
-                <label>Last Name:
-                    <input type="text" name="lastName" id="lastName" onChange={handleChange} />
+                <label htmlFor="lastName">Last Name:
+                    <input type="text" id="lastName" value={lastName} onChange={e => setLastName(e.target.value)} />
                 </label>
-            </div>
-            <div className="formRow">
-                <label>Phone:
-                    <input type="text" name="phone" id="phone" onChange={handleChange} required />
+                <label htmlFor="phone">Phone:
+                    <input type="text" id="phone" value={phone} onChange={e => setPhone(e.target.value)} />
                 </label>
-            </div>
-            <div className="formRow">
                 <button type="submit">Submit</button>
-            </div>
-        </form>
+                <button type="reset" onClick={clearForm}>Clear</button>
+            </form>
+        </div>
     )
 }
 
