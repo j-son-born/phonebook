@@ -44,15 +44,22 @@
   color: #888;
 }
 
-.peopleList {
-  display: flex;
-  flex-wrap: wrap;
-
-  .listItem {
-    display:flex;
-    min-width: 100%;
-    div {
-      min-width: 25%;
+form {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  div:has(label) {
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: 1fr;
+    justify-self: center;
+    label {
+      justify-self: right;
     }
   }
+}
+
+.listItem {
+  display: grid;
+  grid-template-columns: 1fr 2fr 2fr 2fr 1fr;
+  justify-items: start;
 }

@@ -9,7 +9,7 @@ function PeoplePage({idGenerator}) {
     return (
         <>
         <PeopleForm people={people} setPeople={setPeople} currentId={currentId} setCurrentId={setCurrentId} idGenerator={idGenerator} />
-        <PeopleList people={people} currentId={currentId} setCurrentId={setCurrentId} />
+        <PeopleList people={people} setPeople={setPeople} setCurrentId={setCurrentId} />
         </>
     )
 }

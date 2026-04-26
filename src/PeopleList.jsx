@@ -1,22 +1,22 @@
 function PeopleList({ people, setPeople, setCurrentId}) {
 
-    function deletePerson(p) {
-        console.group('deletePerson');
-        console.table(p);
-        
-        if (confirm('Are you suuuuuure?')) {
-            (async (id) => {
-                people.splice(people.findIndex(x => x.id == id), 1);
-            })(p.id).then(() => {
-                setPeople([...people]);
-                console.log("DID delete");
-            })
-        } else {
-            console.log("DID NOT delete");
-        }
-        console.groupEnd();
+    function deletePerson(p){
+            console.group('deletePerson');
+            console.table(p);
+            
+            if (confirm('Are you suuuuuure?')) {
+                (async (id) => {
+                    people.splice(people.findIndex(x => x.id == id), 1);
+                })(p.id).then(() => {
+                    setPeople([...people]);
+                    console.log("DID delete");
+                })
+            } else {
+                console.log("DID NOT delete");
+            }
+            console.groupEnd();
     }
-
+        
     return (
         people.length < 1
             ? <span>Nothing to see here</span>
@@ -26,7 +26,10 @@ function PeopleList({ people, setPeople, setCurrentId}) {
                     <div>First</div>
                     <div>Last</div>
                     <div>Phone</div>
-                    <div></div>
+                    <div>
+                        <span></span>
+                        <span></span>
+                    </div>
                 </div>
                 {
                     people.map(p => {
@@ -36,8 +39,10 @@ function PeopleList({ people, setPeople, setCurrentId}) {
                                 <div>{p.firstName}</div>
                                 <div>{p.lastName}</div>
                                 <div>{p.phone}</div>
-                                <span className="material-symbols-outlined" onClick={() => setCurrentId(p.id)}> edit </span>
-                                <span className="material-symbols-outlined" onClick={() => deletePerson(p)}> delete </span>
+                                <div>
+                                    <span className="material-symbols-outlined" onClick={() => setCurrentId(p.id)}> edit </span>
+                                    <span className="material-symbols-outlined" onClick={() => deletePerson(p)}> delete </span>
+                                </div>
                             </div>
                         )
                     })

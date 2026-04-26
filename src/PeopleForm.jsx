@@ -59,17 +59,21 @@ function PeopleForm({ people, setPeople, currentId, setCurrentId, idGenerator })
     return (
         <div>
             <form action={handleSubmit}>
-                <label htmlFor="firstName">First Name:
-                    <input type="text" id="firstName" value={firstName} onChange={e => setFirstName(e.target.value)} />
-                </label>
-                <label htmlFor="lastName">Last Name:
-                    <input type="text" id="lastName" value={lastName} onChange={e => setLastName(e.target.value)} />
-                </label>
-                <label htmlFor="phone">Phone:
-                    <input type="text" id="phone" value={phone} onChange={e => setPhone(e.target.value)} />
-                </label>
-                <button type="submit">Submit</button>
-                <button type="reset" onClick={clearForm}>Clear</button>
+                <div>
+                    <label htmlFor="firstName">First Name:
+                        <input type="text" id="firstName" value={firstName} onChange={e => setFirstName(e.target.value)} />
+                    </label>
+                    <label htmlFor="lastName">Last Name:
+                        <input type="text" id="lastName" value={lastName} onChange={e => setLastName(e.target.value)} />
+                    </label>
+                    <label htmlFor="phone">Phone:
+                        <input type="text" id="phone" value={phone} onChange={e => setPhone(e.target.value)} />
+                    </label>
+                </div>
+                <div>
+                    <button type="submit">Submit</button>
+                    <button type="reset" onClick={clearForm}>Clear</button>
+                </div>
             </form>
         </div>
     )
