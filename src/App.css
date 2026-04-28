@@ -46,15 +46,12 @@
 
 form {
   display: grid;
-  grid-template-rows: 1fr 1fr;
-  div:has(label) {
+  grid-template-rows: 2fr 1fr;
+  div:has(md-filled-text-field) {
     display: grid;
     grid-template-rows: repeat(3, 1fr);
     grid-template-columns: 1fr;
     justify-self: center;
-    label {
-      justify-self: right;
-    }
   }
 }
 

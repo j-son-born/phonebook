@@ -59,19 +59,13 @@ function PeopleForm({ people, setPeople, currentId, setCurrentId, idGenerator, s
         <div>
             <form action={handleSubmit}>
                 <div>
-                    <label htmlFor="firstName">First Name:
-                        <input type="text" id="firstName" value={firstName} onChange={e => setFirstName(e.target.value)} />
-                    </label>
-                    <label htmlFor="lastName">Last Name:
-                        <input type="text" id="lastName" value={lastName} onChange={e => setLastName(e.target.value)} />
-                    </label>
-                    <label htmlFor="phone">Phone:
-                        <input type="text" id="phone" value={phone} onChange={e => setPhone(e.target.value)} />
-                    </label>
+                    <md-filled-text-field  id="firstName" label="First Name" value={firstName} onChange={e => setFirstName(e.target.value)} />
+                    <md-filled-text-field  id="lastName" label="Last Name" value={lastName} onChange={e => setLastName(e.target.value)} />
+                    <md-filled-text-field  id="phone" label="Phone" value={phone} onChange={e => setPhone(e.target.value)} />
                 </div>
                 <div>
-                    <button type="submit">Submit</button>
-                    <button type="reset" onClick={clearForm}>Clear</button>
+                    <md-filled-button type="submit">Submit</md-filled-button>
+                    <md-filled-button type="reset" onClick={clearForm}>Clear</md-filled-button>
                 </div>
             </form>
         </div>
