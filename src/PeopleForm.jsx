@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 
-function PeopleForm({ people, setPeople, currentId, setCurrentId, idGenerator }) {
+function PeopleForm({ people, setPeople, currentId, setCurrentId, idGenerator, setFormKey}) {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [phone, setPhone] = useState('');
@@ -25,6 +25,7 @@ function PeopleForm({ people, setPeople, currentId, setCurrentId, idGenerator })
 
         if (currentId) {
             editPerson(currentId);
+            document.getElementById('firstName').focus();
         }
     }, [people, currentId, setCurrentId, setFirstName, setLastName, setPhone]);
 
@@ -48,10 +49,10 @@ function PeopleForm({ people, setPeople, currentId, setCurrentId, idGenerator })
         [setFirstName, setLastName, setPhone].forEach(fn => fn(''));
         document.getElementById('firstName').focus();
     }
-
+    
     function clearForm() {
         setCurrentId(null);
-        [setFirstName, setLastName, setPhone].forEach(fn => fn(''));
+        setFormKey(fk => fk + 1);
     }
 
     return (

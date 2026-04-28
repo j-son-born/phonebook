@@ -1,20 +1,18 @@
-function PeopleList({ people, setPeople, setCurrentId}) {
+function PeopleList({ people, setPeople, setCurrentId }) {
 
-    function deletePerson(p){
-            console.group('deletePerson');
-            console.table(p);
-            
-            if (confirm('Are you suuuuuure?')) {
-                if(people.splice(people.findIndex(x => x.id == p.id), 1)){
-                    setPeople([...people]);
-                    console.log("DID delete");
-                }
-            } else {
-                console.log("DID NOT delete");
-            }
-            console.groupEnd();
+    function deletePerson(p) {
+        console.group('deletePerson');
+        console.table(p);
+
+        if (confirm('Are you suuuuuure?')) {
+            setPeople(people.filter(x => x.id != p.id));
+            console.log("DID delete");
+        } else {
+            console.log("DID NOT delete");
+        }
+        console.groupEnd();
     }
-    
+
     return (
         people.length < 1
             ? <span>Nothing to see here</span>
