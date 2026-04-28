@@ -1,46 +1,44 @@
-import { useCallback, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 
 function PeopleForm({ people, setPeople, currentId, setCurrentId, idGenerator }) {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [phone, setPhone] = useState('');
 
-    const editPerson = useCallback((id) => {
-        if (!id) return;
-        console.group('selectPerson');
-
-        (async (id) => {
-            return people.find(p => p.id == id);
-        })(id).then(currentPerson => {
-            setCurrentId(currentPerson?.id);
-            if (currentId) {
-                console.table(currentPerson);
-                setFirstName(currentPerson.firstName)
-                setLastName(currentPerson.lastName)
-                setPhone(currentPerson.phone)
-            }
-        });
-
-        console.groupEnd();
-    }, [people, currentId, setCurrentId, setFirstName, setLastName, setPhone])
-
     useEffect(() => {
+        const editPerson = ((id) => {
+            if (!id) return;
+
+            console.group('selectPerson');
+
+            const currentPerson = people.find(p=> p.id == id);
+
+            if(currentPerson){
+                console.table(currentPerson);
+                setFirstName(currentPerson.firstName);
+                setLastName(currentPerson.lastName);
+                setPhone(currentPerson.phone);
+            }
+
+            console.groupEnd();
+        })
+
         if (currentId) {
             editPerson(currentId);
         }
-    }, [currentId, editPerson]);
+    }, [people, currentId, setCurrentId, setFirstName, setLastName, setPhone]);
 
     function handleSubmit() {
         if (currentId) {
             let oldPerson = people.find(p => p.id == currentId);
-            if(oldPerson){
+            if (oldPerson) {
                 console.log('Edited:', currentId);
-                console.table([oldPerson,{firstName, lastName, phone}], ['firstName', 'lastName', 'phone']);
+                console.table([oldPerson, { firstName, lastName, phone }], ['firstName', 'lastName', 'phone']);
                 Object.assign(oldPerson, { firstName, lastName, phone });
             }
         } else {
             const id = idGenerator.next().value,
-            newPerson = {id, firstName, lastName, phone};
+                newPerson = { id, firstName, lastName, phone };
 
             setPeople([...people, { id, firstName, lastName, phone }]);
             console.table(newPerson);

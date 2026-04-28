@@ -5,18 +5,16 @@ function PeopleList({ people, setPeople, setCurrentId}) {
             console.table(p);
             
             if (confirm('Are you suuuuuure?')) {
-                (async (id) => {
-                    people.splice(people.findIndex(x => x.id == id), 1);
-                })(p.id).then(() => {
+                if(people.splice(people.findIndex(x => x.id == p.id), 1)){
                     setPeople([...people]);
                     console.log("DID delete");
-                })
+                }
             } else {
                 console.log("DID NOT delete");
             }
             console.groupEnd();
     }
-        
+    
     return (
         people.length < 1
             ? <span>Nothing to see here</span>
