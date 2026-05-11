@@ -1,5 +1,9 @@
+import { useState } from 'react';
 import './App.css'
 import PeoplePage from './PeoplePage';
+import LoginPage from './LoginPage';
+import { UserContext } from './UserContext';
+import Menu from './Menu';
 
 function* idg(){
   let i = 1;
@@ -10,10 +14,13 @@ function* idg(){
 
 const idGenerator = idg();
 
-function App() {
+export default function App() {
+  const [currentUser, setCurrentUser] = useState(null);
   return (
-    <PeoplePage idGenerator={idGenerator}/>
+    <UserContext value={{currentUser, setCurrentUser}}>
+      <Menu />
+      <LoginPage />
+      <PeoplePage idGenerator={idGenerator}/>
+    </UserContext>
   )
 }
-
-export default App

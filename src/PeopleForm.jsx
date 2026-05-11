@@ -69,7 +69,7 @@ function PeopleForm({ people, setPeople, currentId, setCurrentId, idGenerator, s
                 </div>
                 <div>
                     <md-filled-button type="submit">Submit</md-filled-button>
-                    <md-filled-button type="reset" onClick={clearForm}>Clear</md-filled-button>
+                    <md-filled-button type="button" onClick={clearForm}>Clear</md-filled-button>
                 </div>
             </form>
         </div>
